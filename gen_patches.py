@@ -76,7 +76,7 @@ class VideoAnomalyDataset(Dataset):
             self.videos += 1
             length = len(l)
             total_frames += length
-            pdb.set_trace()
+            # pdb.set_trace()
             for frame in range(start_ind, length - start_ind, self.sample_step):
                 detect_result = self.detect[video_file][frame]
                 detect_result = detect_result[detect_result[:, 4] > self.filter_ratio, :]
