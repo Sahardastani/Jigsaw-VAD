@@ -92,7 +92,7 @@ class VideoAnomalyDataset(Dataset):
         for i in tqdm(range(len(self.objects_list))):
             record = self.objects_list[i]
             obj = self.get_object(record["video_name"], record["frame"], record["object"])
-            video_dir = os.path.join(self.dataset, self.phase, record["video_name"])
+            video_dir = os.path.join('/home/sdastani/scratch/data/npytest', self.dataset, self.phase, record["video_name"])
             if not os.path.exists(video_dir):
                 os.makedirs(video_dir)
             obj = obj.numpy()
