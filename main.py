@@ -1,3 +1,4 @@
+import pdb
 import os
 import argparse
 import torch
@@ -53,7 +54,7 @@ def train(args):
         print("-------------{} : {}".format(k, v))
 
     # Load Data
-    data_dir = f"/irip/wangguodong_2020/projects/datasets/vad/{args.dataset}/training"
+    data_dir = f"/home/sdastani/scratch/data/{args.dataset}/training" #/irip/wangguodong_2020/projects/datasets/vad/{args.dataset}/training"
     detect_pkl = f'detect/{args.dataset}_train_detect_result_yolov3.pkl'
 
     vad_dataset = VideoAnomalyDataset_C3D(data_dir, 
@@ -146,7 +147,7 @@ def val(args, net=None):
     print("The running_date : {}".format(running_date))
 
     # Load Data
-    data_dir = f"/irip/wangguodong_2020/projects/datasets/vad/{args.dataset}/testing"
+    data_dir = f"/home/sdastani/scratch/data/{args.dataset}/testing"
     detect_pkl = f'detect/{args.dataset}_test_detect_result_yolov3.pkl'
 
     testing_dataset = VideoAnomalyDataset_C3D(data_dir, 

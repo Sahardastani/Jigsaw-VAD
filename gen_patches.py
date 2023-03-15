@@ -1,3 +1,4 @@
+import pdb
 import os
 from PIL import Image
 import time
@@ -58,6 +59,7 @@ class VideoAnomalyDataset(Dataset):
         
         with open(detect_dir, 'rb') as f:
             self.detect = pickle.load(f)
+            # print("This is lablablablab", self.detect)
 
         self.objects_list = []
         self._load_data(file_list)
@@ -74,6 +76,7 @@ class VideoAnomalyDataset(Dataset):
             self.videos += 1
             length = len(l)
             total_frames += length
+            pdb.set_trace()
             for frame in range(start_ind, length - start_ind, self.sample_step):
                 detect_result = self.detect[video_file][frame]
                 detect_result = detect_result[detect_result[:, 4] > self.filter_ratio, :]
@@ -177,7 +180,7 @@ if __name__ == '__main__':
     parser.add_argument("--sample_num", type=int, default=9)
 
     args = parser.parse_args()
-    data_dir = "/irip/wangguodong_2020/projects/datasets/vad/"  # directory for raw frames
+    data_dir = "/home/sdastani/scratch/data/"  # directory for raw frames
     shanghai_dataset = VideoAnomalyDataset(data_dir=data_dir + args.dataset + '/' + args.phase + 'ing/', 
                                            detect_dir='detect/' + args.dataset + '_' + args.phase + '_detect_result_yolov3.pkl',
                                            dataset=args.dataset,
